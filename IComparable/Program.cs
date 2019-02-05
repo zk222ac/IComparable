@@ -18,26 +18,53 @@ namespace IComparable
                 new Duck(){Kind = KindOfDuck.Decoy , Size = 56},
                 new Duck(){Kind = KindOfDuck.Mallard , Size = 22},
                 new Duck(){Kind = KindOfDuck.Muscovy , Size = 55}
-
             };
+            // print the ducks
+            PrintDucks(ducks);  
+            
+            // Duck Compare By Size 
+            Console.WriteLine("Sorting By Size..............");
+            DuckComparerBySize size = new DuckComparerBySize();
+            ducks.Sort(size);
 
-            foreach (var duck in ducks)
-            {
-                Console.WriteLine(duck.Kind);
-                Console.WriteLine(duck.Size);
-                Console.WriteLine("\n");
+            // print the ducks
+            PrintDucks(ducks);
+            
 
-            }
-            ducks.Sort();
-            Console.WriteLine(".........................");
-            foreach (var duck in ducks)
-            {
-                Console.WriteLine(duck.Kind);
-                Console.WriteLine(duck.Size);
-                Console.WriteLine("\n");
+            // Duck Compare By Kind 
+            Console.WriteLine("Sorting By Kind..............");
+            DuckComparerByKind kind = new DuckComparerByKind();
+            ducks.Sort(kind);
 
-            }
+            // print the ducks
+            PrintDucks(ducks);
+
+            //........ Sort By Comparer  --> Size then Kind ...................................................
+            DuckComparer comparerSizeThenKind = new DuckComparer {SortBy = SortCriteria.SizeThenKind};
+            ducks.Sort(comparerSizeThenKind);
+
+            Console.WriteLine("Size then Kind....................");
+            // print the ducks
+            PrintDucks(ducks);
+
+            //........ Sort By Comparer  --> kind then Size ...................................................
+            DuckComparer comparerKindThenSize = new DuckComparer { SortBy = SortCriteria.SizeThenKind };
+            ducks.Sort(comparerKindThenSize);
+            Console.WriteLine("Kind then Size....................");
+            // print the ducks
+            PrintDucks(ducks);
+
             Console.ReadKey();
+        }
+
+        public static void PrintDucks(List<Duck> ducks)
+        {
+            foreach (var duck in ducks)
+            {
+                Console.WriteLine(duck.Size + "-inch-" + duck.Kind);
+            }
+
+            Console.WriteLine("End of Ducks................................");
         }
     }
 }

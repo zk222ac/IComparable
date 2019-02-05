@@ -14,7 +14,7 @@ namespace IComparable
 
        public int Size { get; set; }
        public KindOfDuck Kind { get; set; }
-
+        
        public int CompareTo(Duck other)
        {
            // one duck size is bigger than that other one
@@ -40,5 +40,11 @@ namespace IComparable
         Mallard,
         Muscovy,
         Decoy
+    }
+
+    public enum SortCriteria
+    {
+        SizeThenKind,
+        KindThenSize
     }
 }
